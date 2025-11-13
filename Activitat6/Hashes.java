@@ -1,0 +1,68 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;  
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import java.util.HexFormat;    
+
+
+
+public class Hashes {
+
+    public String getSHA512AmbSalt(String pw, String salt) throws Exception {
+    MessageDigest md = MessageDigest.getInstance("SHA-512");
+    md.update(salt.getBytes());
+    byte[] digest = md.digest(pw.getBytes());
+    return HexFormat.of().formatHex(digest);
+}
+
+    public String getPBKDF2AmbSalt(String pw, String salt){
+        return null;
+    }
+
+    public String forcaBruta (String alg, String has, String alt){
+        return null;
+    }
+
+    public String getInterval ( long t1, long t2){
+        return null;
+    }
+
+    public static void main(String[] args)throws Exception {
+        
+    }
+
+}/*/
+public static void main(String[] args) throws Exception {
+    String salt = "qpoweiruañslkdfjz";
+    String pw = "aaabF!";
+    Hashes h = new Hashes();
+
+    String[] aHashes = {
+        h.getSHA512AmbSalt(pw, salt),
+        h.getPBKDF2AmbSalt(pw, salt)
+    };
+
+    String pwTrobat = null;
+    String[] algoritmes = { "SHA-512", "PBKDF2" };
+
+    for (int i = 0; i < aHashes.length; i++) {
+        System.out.print("==============================\n");
+        System.out.printf("Algorisme: %s\n", algoritmes[i]);
+        System.out.printf("Hash: %s\n", aHashes[i]);
+        System.out.print("------------------------------\n");
+        System.out.print("-- Inici de força bruta ---\n");
+
+        long t1 = System.currentTimeMillis();
+        pwTrobat = h.forcaBruta(algoritmes[i], aHashes[i], salt);
+        long t2 = System.currentTimeMillis();
+
+        System.out.printf("Pass   : %s\n", pwTrobat);
+        System.out.printf("Provats: %d\n", h.npass);
+        System.out.printf("Temps  : %s\n", h.getInterval(t1, t2));
+        System.out.print("------------------------------\n\n");
+    }
+}
+
+*/
